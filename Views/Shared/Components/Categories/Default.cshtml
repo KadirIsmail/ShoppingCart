@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ShoppingCart.Models.CategoryTbl>
+
+@{
+    ViewData["Title"] = "Default";
+}
+<table class="table">
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <ul>
+                    <li><a href="Kategori/@Html.Raw(Html.Encode(item.Name).Replace(" ", "-"))">@Html.DisplayFor(modelItem => item.Name)</a></li>
+                </ul>               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

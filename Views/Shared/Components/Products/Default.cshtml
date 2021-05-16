@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShoppingCart.Models.ProductTbl>
+
+@{
+    ViewData["Title"] = "Default";
+}
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+        <div class="d-inline" style="float:left;margin-right:25px;margin-top:15px;border-style:double;align-content:center">
+            <div style="align-content:center">
+                <a href="#">
+                    <div class="mask" style="align-content:center">
+                        <img class="d-inline-block" style=""
+                             src="..\images/@Html.DisplayFor(modelItem => item.Photo)" width="300" height="200" alt="resim bulunamıyor \:">
+                        <div class="mask rgba-black-slight"></div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-center pt-4">
+                <a class="btn btn-dark" href="/Home/@Html.DisplayFor(modelItem => item.ProductName)">@Html.DisplayFor(modelItem => item.ProductName)</a>
+
+                <h5>@Html.DisplayFor(modelItem => item.ProductName)</h5>
+                <hr>
+                <h6 class="mb-3">@Html.DisplayFor(modelItem => item.Price)</h6>
+                <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
+                    <i class="fas fa-shopping-cart pr-2"></i>Sepete Ekle
+                </button>
+                @*<button action="/urun/@Html.Raw(Html.Encode(item.ProductName).Replace(" ", "-"))" type="button" class="btn btn-info btn-sm mr-1 mb-2">
+            <i class="fas fa-info-circle pr-2"></i>DetaylarBirşey
+        </button>*@
+                @*<a href="/urun/@Html.Raw(Html.Encode(item.ProductName).Replace(" ", "-"))" class="btn btn-dark">
+                    <i class="fas fa-info-circle pr-2"></i>Detaylar
+                </a>*@
+
+                
+                <a class="nav-link text-dark" asp-area="" asp-controller="urun" asp-action="detaylar" asp-route-name="@Html.DisplayFor(modelItem => item.ProductName)">Detaylar</a>
+                
+                
+                <button type="button" class="btn btn-danger btn-sm px-3 mb-2 material-tooltip-main" data-toggle="tooltip"
+                        data-placement="top" title="Favorilere Ekle">         
+                    <i class="far fa-heart"></i>Favorilere Ekle
+                </button>
+
+            </div>
+
+</div>
+}
+</tbody>
+</table>

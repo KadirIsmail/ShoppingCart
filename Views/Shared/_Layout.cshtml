@@ -1,0 +1,128 @@
+﻿@using ShoppingCart.Models;
+@using System.Data;
+@using Microsoft.Data.SqlClient;
+
+@model IEnumerable<ShoppingCart.Models.CategoryTbl>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ShoppingCart</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        #yanMenu {
+            border-right-style: solid;
+            /*border-style: solid;*/
+            border-width: 1px;
+            width: 300px;
+            height: 700px; /*620px*/
+            /* background-color: cadetblue; */
+            margin-top: 25px;
+            position: fixed;
+            overflow: auto;
+            top: 25px;
+            display: inline-block;
+            background-color: #19BC9C;
+            color: #fff;
+        }
+
+        #yanMenu ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #yanMenu ul li a:hover {
+            color: aliceblue;
+            margin-left: 15px;
+        }
+
+        #yanMenu ul li {
+            list-style-type: none;
+            border-style: none;
+            border-width: 1px;
+            /* border-radius: 15px; */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #yanMenu ul li:first-child {
+            margin-top: 35px;
+        }
+
+        #yanMenu .yanBaslik {
+            border-style: dotted;
+            border-width: 0px 0px 3px 0px;
+            border-color: antiquewhite;
+            height: 70px;
+            text-align: center;
+            color: red;
+            background-color: rgb(214, 235, 28);
+            font-size: xx-large;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container {
+            display: inline-block;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ShoppingCart</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    
+                    
+
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="CategoryTbls" asp-action="Index">Kategoriler</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @*, new { CategoryId = 1 }*@
+            @await Component.InvokeAsync("Products")
+            @RenderBody()
+        </main>
+    </div>
+    <aside id="yanMenu">
+        @*<h1 class="yanBaslik"></h1>*@
+        <ul>
+            @await Component.InvokeAsync("Categories" , null);
+        </ul>
+    </aside>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - ShoppingCart - <a asp-area="" asp-controller="ProductTbls" asp-action="Index">Ürünler</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+@{ 
+    
+} 
